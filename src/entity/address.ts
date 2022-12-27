@@ -1,11 +1,11 @@
-class Address {
+export default class Address {
     _street: string = "";
     _city: string = "";
     _state: string = "";
     _zip: string = "";
     _number: number = 0;
 
-    constructor(street: string, city: string, state: string, zip: string, number: number) {
+    constructor(street: string, number: number, city: string, state: string, zip: string ) {
         this._street = street;
         this._city = city;
         this._state = state;

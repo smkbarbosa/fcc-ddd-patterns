@@ -1,12 +1,16 @@
+import Address from './address';
+
+
 // a entidade sempre vai ter que representar o estado correto do elemento
 // uma entidade por padrão sempre tem que se autovalidar
-class Customer{
+export default class Customer{
   _id:string;
   _name:string;
-  _address!:Address;
+  _address!: Address;
   _active:boolean = false;
 
-  constructor(id: string, name: string, address: string){
+
+  constructor(id: string, name: string){
     this._id = id;
     this._name = name;
     this.validate();
