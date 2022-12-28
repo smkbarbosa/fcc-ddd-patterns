@@ -3,11 +3,12 @@ import Address from './address';
 
 // a entidade sempre vai ter que representar o estado correto do elemento
 // uma entidade por padrão sempre tem que se autovalidar
-export default class Customer{
+export default class Customer {
   private _id:string;
   private _name:string;
   private _address!: Address;
   private _active:boolean = false;
+  private _rewardPoints: number = 0;
 
 
   constructor(id: string, name: string){
@@ -27,9 +28,17 @@ export default class Customer{
 
   }
 
+  get id(): string {
+    return this._id;
+  }
+
   get name(): string {
     return this._name;
   }
+
+  get rewardPoints(): number {
+    return this._rewardPoints;
+    }
 
   
   // Ao inves de usar getters and setters no dominio da apĺicação, usar funções que tenham relação com a regra de negócio
@@ -56,6 +65,10 @@ export default class Customer{
 
   isActive(): boolean {
     return this._active;
+  }
+
+  addRewardPoints(points: number) {
+    this._rewardPoints += points;
   }
 
   set Address(address: Address) {
