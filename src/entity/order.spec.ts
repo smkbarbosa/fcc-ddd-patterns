@@ -25,19 +25,29 @@ describe("Order unit tests", () => {
 
     it("should calculate total", () => {
             
-            const item1 = new OrderItem('i1', 'Item1', 100);
-            const item2 = new OrderItem('i2', 'Item2', 200);
+            const item1 = new OrderItem('i1', 'Item1', 100, 'p1', 2);
+            const item2 = new OrderItem('i2', 'Item2', 200, 'p2', 2);
 
             const order = new Order('1','123' , [item1]);
 
             let total = order.total();
 
-            expect(total).toBe(100);
+            expect(order.total()).toBe(200);
 
             const order2 = new Order('1','123' , [item1, item2]);
             total = order2.total();
 
-            expect(total).toBe(300);
+            expect(total).toBe(600);
     });
+
+    it("should check if the qtt is greater than 0", () => {
+            
+        expect(() => {
+            const item1 = new OrderItem('i1', 'Item1', 100, 'p1', 0);
+            const order = new Order('1','123' , [item1]);
+        }).toThrowError("Item qtt must be greater than 0");
+
+});
+
 
 });

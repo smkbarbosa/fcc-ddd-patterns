@@ -16,7 +16,7 @@ export default class Order {
     }
 
     total(): number {
-        return this._items.reduce((total, item) => total + item._price, 0);
+        return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
     }
 
     validate(): boolean {
@@ -27,6 +27,9 @@ export default class Order {
             throw new Error("CustomerId is required");
         }
         if (this._items.length === 0) {
+            throw new Error("Item qtt must be greater than 0");
+        }
+        if (this._items.some((item) => item.quantity <= 0)) {
             throw new Error("Item qtt must be greater than 0");
         }
         return true;
