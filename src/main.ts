@@ -9,7 +9,7 @@ const address = new Address('rua 1', 123, 'São Paulo', 'SP', '12345-678');
 customer.Address = address;
 customer.activate();
 
-const item1 = new OrderItem('123', 'Item1', 10);
-const item2 = new OrderItem('456', 'Item2', 20);
+const item1 = new OrderItem('123', 'Item1', 10, 'p1', 2);
+const item2 = new OrderItem('456', 'Item2', 20, 'p2', 2);
 
 const order = new Order('1','123' , [item1, item2]);
