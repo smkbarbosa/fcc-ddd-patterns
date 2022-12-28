@@ -1,7 +1,7 @@
 import Order from '../entity/order';
 import Customer from '../entity/customer';
 import OrderItem from '../entity/order_item';
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export default class OrderService {
 
@@ -9,7 +9,7 @@ export default class OrderService {
         if (items.length === 0) {
             throw new Error("Order must have at least one item");
         }
-        const order = new Order("id", customer.id, items);
+        const order = new Order(uuid(), customer.id, items);
         customer.addRewardPoints(order.total()/2);
         return order;
         }
