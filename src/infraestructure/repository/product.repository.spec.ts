@@ -13,7 +13,7 @@ describe("Product repository test", () => {
             logging: false,
             sync: { force: true },
         });
-        
+
         sequelize.addModels([ProductModel]);
         await sequelize.sync();
     });
@@ -79,7 +79,7 @@ describe("Product repository test", () => {
             id: productFound.id,
             name: productFound.name,
             price: productFound.price
-        });        
+        });
     });
 
     it("should find all products", async () => {
@@ -87,7 +87,7 @@ describe("Product repository test", () => {
         const product = new Product("1", "Product 1", 100);
         await productRepository.create(product);
 
-        const product2 = new Product("2", "Product 2", 200);       
+        const product2 = new Product("2", "Product 2", 200);
         await productRepository.create(product2);
 
         const productsFound = await productRepository.findAll();
