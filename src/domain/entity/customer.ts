@@ -40,7 +40,6 @@ export default class Customer {
     return this._rewardPoints;
     }
 
-  
   // Ao inves de usar getters and setters no dominio da apĺicação, usar funções que tenham relação com a regra de negócio
   // da classe, que representem o que ela deve fazer
   changeName(name: string) {
@@ -72,6 +71,10 @@ export default class Customer {
   }
 
   set Address(address: Address) {
+    this._address = address;
+  }
+
+  changeAddress(address: Address) {
     this._address = address;
   }
 
