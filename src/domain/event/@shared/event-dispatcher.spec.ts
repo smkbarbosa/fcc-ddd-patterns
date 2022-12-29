@@ -1,7 +1,12 @@
+import EventDispatcher from "./event-dispatcher";
+
+class SendEmailWherProductIsCreatedHandler {
+}
+
 describe("Domain events tests", () => {
     it("should register an event handler", () => {
         const eventDispatcher = new EventDispatcher();
-        const event = new SendEmailWherProductIsCreatedHandler();
+        const eventHandler = new SendEmailWherProductIsCreatedHandler();
 
         eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
