@@ -68,7 +68,7 @@ describe("Domain events tests", () => {
             ).toMatchObject(eventHandler);
 
             const productCreatedEvent = new ProductCreatedEvent({
-                    name: "Product name",
+                    name: "P1 Name",
                     description: "Product description",
                     price: 100,
                 }
@@ -76,7 +76,7 @@ describe("Domain events tests", () => {
 
             // Quando o notify for executado, o SendEmailWhenProductIsCreatedHandler() vai ser chamado
             // @ts-ignore
-            eventDispatcher.notify("productCreatedEvent");
+            eventDispatcher.notify(productCreatedEvent);
 
             expect(spyEventHandler).toHaveBeenCalled();
         });
