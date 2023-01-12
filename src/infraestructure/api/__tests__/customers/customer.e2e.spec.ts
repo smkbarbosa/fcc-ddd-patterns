@@ -1,4 +1,4 @@
-import {app, sequelize} from "../express";
+import {app, sequelize} from "../../express";
 import request from "supertest";
 
 /* Instalado nesse passo o supertest (npm i -D supertest para realizar esse tipo de teste */
