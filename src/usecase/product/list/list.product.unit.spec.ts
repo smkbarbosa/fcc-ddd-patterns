@@ -1,5 +1,5 @@
 import ProductFactory from "../../../domain/product/factory/product.factory";
-import ListProductUsecase from "./list.product.usecase";
+import ListProductUseCase from "./listProductUseCase";
 
 const product1 = ProductFactory.create("a", "product A", 1);
 const product2 = ProductFactory.create("b", "product B", 1);
@@ -16,7 +16,7 @@ const MockRepository = () => {
 describe("Unit test for listing product use case", () => {
     it("should list a product", async () => {
         const repository = MockRepository();
-        const useCase = new ListProductUsecase(repository);
+        const useCase = new ListProductUseCase(repository);
 
         // @ts-ignore
         const output = await useCase.execute({});

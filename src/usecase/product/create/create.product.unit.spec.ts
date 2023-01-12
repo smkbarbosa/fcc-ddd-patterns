@@ -1,4 +1,4 @@
-import CreateProductUsecase from "./create.product.usecase";
+import CreateProductUseCase from "./createProductUseCase";
 
 const input = {
     type: "a",
@@ -18,7 +18,7 @@ const MockRepository = () => {
 describe('Unit Test create product use case', () => {
     it('should create product', async () => {
         const productRepository = MockRepository();
-        const createProductUseCase = new CreateProductUsecase(productRepository);
+        const createProductUseCase = new CreateProductUseCase(productRepository);
 
         const output = await createProductUseCase.execute(input);
 
@@ -31,7 +31,7 @@ describe('Unit Test create product use case', () => {
 
     it('should throw error when price is less then zero', async () => {
         const productRepository = MockRepository();
-        const createProductUseCase = new CreateProductUsecase(productRepository);
+        const createProductUseCase = new CreateProductUseCase(productRepository);
         input.price = -1;
 
         await expect(createProductUseCase.execute(input)).rejects.toThrowError("Price must be greater than zero");

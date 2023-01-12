@@ -1,9 +1,10 @@
 import {InputListCustomerDto, OutputListCustomerDto} from "./list.customer.dto";
 import Customer from "../../../domain/customer/entity/customer";
+import CustomerRepository from "../../../infraestructure/customer/repository/sequelize/customer.repository";
+import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 
 export default class ListCustomerUsecase {
-    const
-    customerRepository: CustomerRepository;
+    private customerRepository: CustomerRepositoryInterface;
 
     constructor(customerRepository: CustomerRepository) {
         this.customerRepository = customerRepository;

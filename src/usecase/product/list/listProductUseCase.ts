@@ -2,7 +2,7 @@ import ProductRepositoryInterface from "../../../domain/product/repository/produ
 import {OutputListProductDto} from "./list.product.dto";
 import Product from "../../../domain/product/entity/product";
 
-export default class ListProductUsecase {
+export default class ListProductUseCase {
     private productRepository: ProductRepositoryInterface;
 
     constructor(productRepository: ProductRepositoryInterface) {
