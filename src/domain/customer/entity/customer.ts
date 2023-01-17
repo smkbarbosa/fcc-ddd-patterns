@@ -1,101 +1,111 @@
 import Address from '../value-object/address';
+import Entity from "../../@shared/entity/entity.abstract";
+import NotificationError from "../../@shared/notification/notification.error";
 
 
 // a entidade sempre vai ter que representar o estado correto do elemento
 // uma entidade por padrão sempre tem que se autovalidar
-export default class Customer {
-  private _id:string;
-  private _name:string;
-  private _address!: Address;
-  private _active:boolean = false;
-  private _rewardPoints: number = 0;
+export default class Customer extends Entity {
+    private _address!: Address;
+    private _active: boolean = false;
 
+    constructor(id: string, name: string) {
+        super();
+        this._id = id;
+        this._name = name;
+        this.validate();
 
-  constructor(id: string, name: string){
-    this._id = id;
-    this._name = name;
-    this.validate();
-  }
-
-  validate() {
-    if (this._id.length === 0) {
-      throw new Error("Id is required");
+        if (this.notification.hasErrors()) {
+            // @ts-ignore
+            throw new NotificationError(this.notification.getErrors());
+        }
     }
 
-    if (this._name.length === 0) {
-      throw new Error("Name is required");
+    private _name: string;
+
+    get name(): string {
+        return this._name;
     }
 
-  }
+    private _rewardPoints: number = 0;
 
-  get id(): string {
-    return this._id;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  get rewardPoints(): number {
-    return this._rewardPoints;
+    get rewardPoints(): number {
+        return this._rewardPoints;
     }
 
-  // Ao inves de usar getters and setters no dominio da apĺicação, usar funções que tenham relação com a regra de negócio
-  // da classe, que representem o que ela deve fazer
-  changeName(name: string) {
-    this._name = name;
-    this.validate();
-  }
-
-  get Address(): Address {
-    return this._address;
-  }
-
-  activate() {
-    if (this._address === undefined) {
-      throw new Error("Address is mandatory to activate a customer");
+    get Address(): Address {
+        return this._address;
     }
-    this._active = true;
-  }
 
-  deactivate() {
-    this._active = false
-  }
+    // Ao inves de usar getters and setters no dominio da apĺicação, usar funções que tenham relação com a regra de negócio
 
-  isActive(): boolean {
-    return this._active;
-  }
+    set Address(address: Address) {
+        this._address = address;
+    }
 
-  addRewardPoints(points: number) {
-    this._rewardPoints += points;
-  }
+    validate() {
+        if (this.id.length === 0) {
+            this.notification.addError({
+                context: "customer",
+                message: "Customer id is required"
+            });
+        }
 
-  set Address(address: Address) {
-    this._address = address;
-  }
+        if (this._name.length === 0) {
+            this.notification.addError({
+                context: "customer",
+                message: "Customer name is required"
+            });
+        }
+    }
 
-  changeAddress(address: Address) {
-    this._address = address;
-  }
+    // da classe, que representem o que ela deve fazer
+    changeName(name: string) {
+        this._name = name;
+        this.validate();
+    }
 
-  // get id(): string {
+    activate() {
+        if (this._address === undefined) {
+            throw new Error("Address is mandatory to activate a customer");
+        }
+        this._active = true;
+    }
+
+    deactivate() {
+        this._active = false
+    }
+
+    isActive(): boolean {
+        return this._active;
+    }
+
+    addRewardPoints(points: number) {
+        this._rewardPoints += points;
+    }
+
+    changeAddress(address: Address) {
+        this._address = address;
+    }
+
+    // get id(): string {
     // return this._id;
-  // }
+    // }
 
-  // get name(): string {
+    // get name(): string {
     // return this._name;
-  // }
+    // }
 
-  // get address(): string {
+    // get address(): string {
     // return this._address;
-  // }
+    // }
 
-  // set name(name: string) {
+    // set name(name: string) {
     // this._name = name;
-  // }
+    // }
 
-  // set address(address: string) {
+    // set address(address: string) {
     // this._address = address;
-  // }
+    // }
 
 }

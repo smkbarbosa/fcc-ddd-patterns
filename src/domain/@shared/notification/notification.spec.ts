@@ -1,4 +1,4 @@
-import Notification from "./Notification";
+import Notification from "./notification";
 
 describe("Notification unit tests", () => {
     it("should create a notification", () => {
@@ -30,7 +30,32 @@ describe("Notification unit tests", () => {
         notification.addError(error3);
 
         expect(notification.messages("customer")).toBe("customer: error message, customer: error message 2, ")
+        // @ts-ignore
         expect(notification.messages()).toBe("customer: error message, customer: error message 2, order: error message 3, ")
 
+    });
+
+    it("should check if notification has errors", () => {
+        const notification = new Notification();
+        const error = {
+            message: "error message",
+            context: "customer"
+        }
+
+        notification.addError(error);
+
+        expect(notification.hasErrors()).toBe(true);
+    });
+
+    it("should get all errors props", () => {
+        const notification = new Notification();
+        const error = {
+            message: "error message",
+            context: "customer"
+        }
+
+        notification.addError(error);
+
+        expect(notification.getErrors()).toEqual([error]);
     });
 });
