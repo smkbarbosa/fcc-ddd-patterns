@@ -1,5 +1,6 @@
 import NotificationError from "../../@shared/notification/notification.error";
 import Entity from "../../@shared/entity/entity.abstract";
+import ProductValidatorFactory from "../factory/product.validator.factory";
 
 export default class Product extends Entity {
     constructor(id: string, name: string, price: number) {
@@ -27,26 +28,7 @@ export default class Product extends Entity {
     }
 
     validate() {
-        if (this.id.length === 0) {
-            this.notification.addError({
-                context: "product",
-                message: "Product id is required"
-            });
-        }
-
-        if (this.name.length === 0) {
-            this.notification.addError({
-                context: "product",
-                message: "Product name is required"
-            });
-        }
-
-        if (this.price <= 0) {
-            this.notification.addError({
-                context: "product",
-                message: "Product price must be greater than zero"
-            });
-        }
+       ProductValidatorFactory.create().validate(this);
     }
 
 
