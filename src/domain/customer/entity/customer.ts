@@ -1,6 +1,7 @@
 import Address from '../value-object/address';
 import Entity from "../../@shared/entity/entity.abstract";
 import NotificationError from "../../@shared/notification/notification.error";
+import CustomerValidatorFactory from "../factory/customer.validator.factory";
 
 
 // a entidade sempre vai ter que representar o estado correto do elemento
@@ -44,19 +45,7 @@ export default class Customer extends Entity {
     }
 
     validate() {
-        if (this.id.length === 0) {
-            this.notification.addError({
-                context: "customer",
-                message: "Customer id is required"
-            });
-        }
-
-        if (this._name.length === 0) {
-            this.notification.addError({
-                context: "customer",
-                message: "Customer name is required"
-            });
-        }
+        CustomerValidatorFactory.create().validate(this);
     }
 
     // da classe, que representem o que ela deve fazer
