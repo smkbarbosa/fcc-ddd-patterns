@@ -34,6 +34,6 @@ describe('Unit Test create product use case', () => {
         const createProductUseCase = new CreateProductUseCase(productRepository);
         input.price = -1;
 
-        await expect(createProductUseCase.execute(input)).rejects.toThrowError("Price must be greater than zero");
+        await expect(createProductUseCase.execute(input)).rejects.toThrowError("product: Product price must be greater than zero");
     });
 });
