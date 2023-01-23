@@ -16,10 +16,10 @@ describe("Domain events tests", () => {
 
         eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
-        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"]
+        expect(eventDispatcher.getEventHandlers.ProductCreatedEvent
         ).toBeDefined();
-        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"].length).toBe(1);
-        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]).toMatchObject(eventHandler);
+        expect(eventDispatcher.getEventHandlers.ProductCreatedEvent.length).toBe(1);
+        expect(eventDispatcher.getEventHandlers.ProductCreatedEvent[0]).toMatchObject(eventHandler);
     });
 
     it("should unregister an event handler", () => {
@@ -29,15 +29,15 @@ describe("Domain events tests", () => {
         eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
         expect(
-            eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+            eventDispatcher.getEventHandlers.ProductCreatedEvent[0]
         ).toMatchObject(eventHandler);
 
         eventDispatcher.unregister("ProductCreatedEvent", eventHandler);
 
         expect(
-            eventDispatcher.getEventHandlers["ProductCreatedEvent"]
+            eventDispatcher.getEventHandlers.ProductCreatedEvent
         ).toBeDefined();
-        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"].length).toBe(
+        expect(eventDispatcher.getEventHandlers.ProductCreatedEvent.length).toBe(
             0
         );
     });
@@ -49,13 +49,13 @@ describe("Domain events tests", () => {
         eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
         expect(
-            eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+            eventDispatcher.getEventHandlers.ProductCreatedEvent[0]
         ).toMatchObject(eventHandler);
 
         eventDispatcher.unregisterAll();
 
         expect(
-            eventDispatcher.getEventHandlers["ProductCreatedEvent"]
+            eventDispatcher.getEventHandlers.ProductCreatedEvent
         ).toBeUndefined();
 
     });
@@ -68,7 +68,7 @@ describe("Domain events tests", () => {
         eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
         expect(
-            eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]
+            eventDispatcher.getEventHandlers.ProductCreatedEvent[0]
         ).toMatchObject(eventHandler);
 
         const productCreatedEvent = new ProductCreatedEvent({
@@ -79,7 +79,7 @@ describe("Domain events tests", () => {
         );
 
         // Quando o notify for executado, o SendEmailWhenProductIsCreatedHandler() vai ser chamado
-        // @ts-ignore
+
         eventDispatcher.notify(productCreatedEvent);
 
         expect(spyEventHandler).toHaveBeenCalled();
@@ -95,9 +95,9 @@ describe("Domain events tests", () => {
         eventDispatcher.register("CustomerCreatedEvent", eventHandler1);
         eventDispatcher.register("CustomerCreatedEvent", eventHandler2);
 
-        expect(eventDispatcher.getEventHandlers["CustomerCreatedEvent"][0]
+        expect(eventDispatcher.getEventHandlers.CustomerCreatedEvent[0]
         ).toMatchObject(eventHandler1);
-        expect(eventDispatcher.getEventHandlers["CustomerCreatedEvent"][1]
+        expect(eventDispatcher.getEventHandlers.CustomerCreatedEvent[1]
         ).toMatchObject(eventHandler2);
 
         const customerCreatedEvent = new CustomerCreatedEvent({
@@ -121,7 +121,7 @@ describe("Domain events tests", () => {
         const address = new Address("Street", 1, "CEP", "Cidade");
         customer.Address = address;
 
-        expect(eventDispatcher.getEventHandlers["AddressChangedEvent"][0]
+        expect(eventDispatcher.getEventHandlers.AddressChangedEvent[0]
         ).toMatchObject(eventHandler);
 
         const address2 = new Address("Street 1", 1, "Zipcode 1", "City 1");
