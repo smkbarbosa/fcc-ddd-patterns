@@ -1,5 +1,5 @@
 import ProductFactory from "../../../domain/product/factory/product.factory";
-import UpdateProductUsecase from "./update.product.usecase";
+import UpdateProductUseCase from "./updateProductUseCase";
 
 const product = ProductFactory.create(
     "a",
@@ -25,7 +25,7 @@ const MockRepository = () => {
 describe("Unit Test update product use case", () => {
     it("should update product", async () => {
         const productRepository = MockRepository();
-        const updateProductUseCase = new UpdateProductUsecase(productRepository);
+        const updateProductUseCase = new UpdateProductUseCase(productRepository);
 
         const output = await updateProductUseCase.execute(input);
 

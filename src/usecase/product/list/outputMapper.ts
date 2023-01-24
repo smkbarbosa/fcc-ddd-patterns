@@ -1,17 +1,14 @@
 import Product from "../../../domain/product/entity/product";
+import {OutputListProductDto} from "./list.product.dto";
 
 export class OutputMapper {
-    static toOutput(product: Product[]): { products: { price: number; name: string; id: string }[] }{
+    static toOutput(product: Product[]): OutputListProductDto {
         return {
-            // tslint:disable-next-line:no-shadowed-variable
-            products: product.map(product =>
-                ({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        type: 'a',
-                    }
-                ))
-        };
-    };
+            products: product.map((product) => ({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+            })),
+        }
+    }
 }
